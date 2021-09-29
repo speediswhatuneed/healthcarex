@@ -23,10 +23,10 @@ public class Specialization {
 	@Column(name="spec_id_col")
 	private Long id;
 	
-	@Column(name="spec_name_col")
+	@Column(name="spec_name_col",length = 60)
 	private String specName;
 	
-	@Column(name="spec_code_col")
+	@Column(name="spec_code_col",length=10,nullable = false,unique = true)
 	private String specCode;
 	
 	@Column(name="spec_note_col")
