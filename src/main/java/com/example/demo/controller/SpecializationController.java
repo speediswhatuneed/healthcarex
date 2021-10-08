@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.Specialization;
@@ -36,6 +38,19 @@ public class SpecializationController {
 		List<Specialization> list = service.getAllSpecializations();
 		model.addAttribute("list", list);
 		return "SpecializationData";
+	}
+	
+	@PostMapping(value ="/save")
+	public String saveForm(
+			@ModelAttribute Specialization specialization,
+			Model model)
+	{
+		System.out.println("inside save form");
+		Long id = service.saveSpecialization(specialization);
+		String message2 ="Record("+id+") is created";
+		model.addAttribute("message", message2);
+		return "SpecializationRegister";
+		
 	}
 	
 
